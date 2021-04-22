@@ -1,0 +1,35 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+[dev-packages]
+black = "*"
+pylint = "*"
+argh = "*"
+jedi = "*"
+watchdog = "*"
+mypy = "*"
+pytest = "*"
+pylint-fail-under = "*"
+pytest-cov = "*"
+pytest-xdist = "*"
+twine = "*"
+dataclasses = "*"
+
+[scripts]
+"start" = "python -m yapt"
+"start:watch" = "watchmedo auto-restart -p '*.py' -R python -- -m yapt"
+"fix:style" = "black -l 100 -S yapt"
+"check:lint" = "pylint --fail-under 9 --rcfile .pylintrc --output-format colorized --verbose yapt"
+"check:types" = "mypy yapt"
+"check:style" = "black -l 100 -S --check yapt"
+"tests" = "pytest --cov yapt --cov-report term --cov-report html --verbose"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
