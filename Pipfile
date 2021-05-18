@@ -18,6 +18,9 @@ pytest-cov = "*"
 pytest-xdist = "*"
 twine = "*"
 dataclasses = "*"
+vrelease-bin = "*"
+sphinx = "*"
+sphinxcontrib-napoleon = "*"
 
 [scripts]
 "start" = "python -m yapt"
