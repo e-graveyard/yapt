@@ -26,8 +26,8 @@ An opinionated template for Python projects that includes, out of the box:
 [codecov-shield]: https://img.shields.io/codecov/c/github/caian-org/yapt.svg?logo=codecov&logoColor=FFF&style=flat-square
 [codecov-url]: https://codecov.io/gh/caian-org/yapt
 
-[lgtm-shield]: https://img.shields.io/lgtm/grade/javascript/g/caian-org/yapt.svg?logo=lgtm&style=flat-square
-[lgtm-url]: https://lgtm.com/projects/g/caian-org/yapt/context:javascript
+[lgtm-shield]: https://img.shields.io/lgtm/grade/python/g/caian-org/yapt.svg?logo=lgtm&style=flat-square
+[lgtm-url]: https://lgtm.com/projects/g/caian-org/yapt/context:python
 
 [tag-shield]: https://img.shields.io/github/tag/caian-org/yapt.svg?logo=git&logoColor=FFF&style=flat-square
 [tag-url]: https://github.com/caian-org/yapt/releases
