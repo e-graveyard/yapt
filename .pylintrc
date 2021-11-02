@@ -1,11 +1,7 @@
 [master]
 
-# Remove the comments to disable errors due to missing docstring
-#
-# disable=
-#     missing-module-docstring,
-#     missing-class-docstring,
-#     missing-function-docstring
+ignore=yapt/tests
+disable=missing-module-docstring
 
 
 [similarities]

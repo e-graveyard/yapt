@@ -3,6 +3,11 @@ from yapt.calculator import Number
 
 
 def multiplication_table(operand: Number) -> None:
+    '''Calculate and outputs a multiplication table of a given value.
+
+    Args:
+        operand (Number): The multiplication number
+    '''
     print(f'Times table of {operand}:\n')
 
     for idx in range(1, 11):
