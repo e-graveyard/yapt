@@ -1,5 +1,5 @@
 [run]
-omit = yapt/tests/*
+omit = yapt/tests/*, yapt/__main__.py
 
 [report]
 precision = 2
