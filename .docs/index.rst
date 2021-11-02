@@ -1,11 +1,25 @@
-|Tests| |Code Coverage| |Code Quality| |Docker Image Size| |GitHub Tag|
-
 Yet Another Python Template
 ===========================
 
+.. image:: https://img.shields.io/github/workflow/status/caian-org/yapt/run-tests-and-upload-coverage?label=tests&logo=github&style=flat-square
+       :target: https://github.com/caian-org/yapt/actions/workflows/test-with-cov.yml
+
+.. image:: https://img.shields.io/codecov/c/github/caian-org/yapt.svg?logo=codecov&logoColor=FFF&style=flat-square
+       :target: https://codecov.io/gh/caian-org/yapt
+
+.. image:: https://img.shields.io/lgtm/grade/python/g/caian-org/yapt.svg?logo=lgtm&style=flat-square
+       :target: https://lgtm.com/projects/g/caian-org/yapt/context:python
+
+.. image:: https://img.shields.io/docker/image-size/caian/yapt?sort=semver&logo=docker&logoColor=FFF&style=flat-square
+       :target: https://hub.docker.com/r/caian/yapt
+
+.. image:: https://img.shields.io/github/tag/caian-org/yapt.svg?logo=git&logoColor=FFF&style=flat-square
+       :target: https://github.com/caian-org/yapt/releases
+
 .. raw:: html
 
-   <img src="https://raw.githubusercontent.com/caian-org/yapt/master/.docs/logo.svg" height="240px" align="right"/>
+    <img src="https://raw.githubusercontent.com/caian-org/yapt/master/.docs/logo.svg" height="240px" align="right"/>
+
 
 An opinionated template for Python projects that includes:
 
@@ -43,27 +57,10 @@ and related or neighboring rights to this work**. In the spirit of *freedom of
 information*, I encourage you to fork, modify, change, share, or do whatever
 you like with this project! |CV|_
 
-|License|
+.. image:: https://forthebadge.com/images/badges/cc-0.svg
+       :target: http://creativecommons.org/publicdomain/zero/1.0
 
 
 .. |CV| replace:: ``^C ^V``
 .. _CV: https://kopimi.com
 .. _Caian Rais Ertl: https://github.com/upsetbit
-
-.. |Tests| image:: https://img.shields.io/github/workflow/status/caian-org/yapt/run-tests-and-upload-coverage?label=tests&logo=github&style=flat-square
-   :target: https://github.com/caian-org/yapt/actions/workflows/test-with-cov.yml
-
-.. |Code Coverage| image:: https://img.shields.io/codecov/c/github/caian-org/yapt.svg?logo=codecov&logoColor=FFF&style=flat-square
-   :target: https://codecov.io/gh/caian-org/yapt
-
-.. |Code Quality| image:: https://img.shields.io/lgtm/grade/python/g/caian-org/yapt.svg?logo=lgtm&style=flat-square
-   :target: https://lgtm.com/projects/g/caian-org/yapt/context:python
-
-.. |Docker Image Size| image:: https://img.shields.io/docker/image-size/caian/yapt?sort=semver&logo=docker&logoColor=FFF&style=flat-square
-   :target: https://hub.docker.com/r/caian/yapt
-
-.. |GitHub Tag| image:: https://img.shields.io/github/tag/caian-org/yapt.svg?logo=git&logoColor=FFF&style=flat-square
-   :target: https://github.com/caian-org/yapt/releases
-
-.. |License| image:: https://forthebadge.com/images/badges/cc-0.svg
-   :target: http://creativecommons.org/publicdomain/zero/1.0
