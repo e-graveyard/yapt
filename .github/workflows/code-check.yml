@@ -40,16 +40,16 @@ jobs:
         run: pipenv install --system --deploy --dev
 
       - name: Check code style
-        run: pipenv run check:style
+        run: black -l 100 -S --check yapt
 
       - name: Check lint
-        run: pipenv run check:lint
+        run: pylint --fail-under 9 --rcfile .pylintrc --output-format colorized --verbose yapt
 
       - name: Check types
-        run: pipenv run check:types
+        run: mypy yapt
 
       - name: Run unit tests
-        run: pipenv run tests
+        run: pytest --cov yapt --cov-report term --cov-report html --cov-report xml --verbose
 
       - name: Build documentation
-        run: pipenv run build:docs
+        run: sphinx-build .docs .docs/build
