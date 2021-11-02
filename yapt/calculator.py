@@ -12,6 +12,7 @@ class Calculator:
         result = calc.plus(2).times(4).divided(2)
         print(result)  # 6
     '''
+
     def __init__(self, operand: Number) -> None:
         self.result: Number = operand
 
