@@ -18,7 +18,9 @@ Yet Another Python Template
 
 .. raw:: html
 
+    <br>
     <img src="https://raw.githubusercontent.com/caian-org/yapt/master/.docs/logo.svg" height="240px" align="right"/>
+    <br>
 
 
 An opinionated template for Python projects that includes:
