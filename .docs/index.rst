@@ -1,6 +1,5 @@
-|Tests| |Code Coverage| |Code Quality| |GitHub tag|
+|Tests| |Code Coverage| |Code Quality| |Docker Image Size| |GitHub Tag|
 
-===========================
 Yet Another Python Template
 ===========================
 
@@ -8,8 +7,7 @@ Yet Another Python Template
 
    <img src="https://raw.githubusercontent.com/caian-org/yapt/master/.docs/logo.svg" height="240px" align="right"/>
 
-An opinionated template for Python projects that includes, out of the
-box:
+An opinionated template for Python projects that includes:
 
 -  Unit testing with **pytest**
 -  Type checking with **MyPy**
@@ -23,7 +21,6 @@ box:
    -  Docker image push to DockerHub
 
 
--------------
 Compatibility
 -------------
 
@@ -31,7 +28,6 @@ Compatibility
 ``3.8``, ``3.9`` and ``3.10``.
 
 
------------------
 How can I use it?
 -----------------
 
@@ -39,7 +35,6 @@ Take what suits you, ignore or change what you do not like, and apply according
 to his will.
 
 
--------
 License
 -------
 
@@ -64,7 +59,10 @@ you like with this project! |CV|_
 .. |Code Quality| image:: https://img.shields.io/lgtm/grade/python/g/caian-org/yapt.svg?logo=lgtm&style=flat-square
    :target: https://lgtm.com/projects/g/caian-org/yapt/context:python
 
-.. |GitHub tag| image:: https://img.shields.io/github/tag/caian-org/yapt.svg?logo=git&logoColor=FFF&style=flat-square
+.. |Docker Image Size| image:: https://img.shields.io/docker/image-size/caian/yapt?sort=semver&logo=docker&logoColor=FFF&style=flat-square
+   :target: https://hub.docker.com/r/caian/yapt
+
+.. |GitHub Tag| image:: https://img.shields.io/github/tag/caian-org/yapt.svg?logo=git&logoColor=FFF&style=flat-square
    :target: https://github.com/caian-org/yapt/releases
 
 .. |License| image:: https://forthebadge.com/images/badges/cc-0.svg
