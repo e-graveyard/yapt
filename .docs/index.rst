@@ -1,19 +1,19 @@
 Yet Another Python Template
 ===========================
 
-.. image:: https://img.shields.io/github/workflow/status/caian-org/yapt/run-tests-and-upload-coverage?label=tests&logo=github&style=flat-square
+.. image:: https://img.shields.io/github/workflow/status/caian-org/yapt/run-tests-and-upload-coverage?label=tests&logo=github
        :target: https://github.com/caian-org/yapt/actions/workflows/test-with-cov.yml
 
-.. image:: https://img.shields.io/codecov/c/github/caian-org/yapt.svg?logo=codecov&logoColor=FFF&style=flat-square
+.. image:: https://img.shields.io/codecov/c/github/caian-org/yapt.svg?logo=codecov&logoColor=FFF
        :target: https://codecov.io/gh/caian-org/yapt
 
-.. image:: https://img.shields.io/lgtm/grade/python/g/caian-org/yapt.svg?logo=lgtm&style=flat-square
+.. image:: https://img.shields.io/lgtm/grade/python/g/caian-org/yapt.svg?logo=lgtm
        :target: https://lgtm.com/projects/g/caian-org/yapt/context:python
 
-.. image:: https://img.shields.io/docker/image-size/caian/yapt?sort=semver&logo=docker&logoColor=FFF&style=flat-square
+.. image:: https://img.shields.io/docker/image-size/caian/yapt?sort=semver&logo=docker&logoColor=FFF
        :target: https://hub.docker.com/r/caian/yapt
 
-.. image:: https://img.shields.io/github/tag/caian-org/yapt.svg?logo=git&logoColor=FFF&style=flat-square
+.. image:: https://img.shields.io/github/tag/caian-org/yapt.svg?logo=git&logoColor=FFF
        :target: https://github.com/caian-org/yapt/releases
 
 
