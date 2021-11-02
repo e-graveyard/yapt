@@ -16,12 +16,10 @@ Yet Another Python Template
 .. image:: https://img.shields.io/github/tag/caian-org/yapt.svg?logo=git&logoColor=FFF&style=flat-square
        :target: https://github.com/caian-org/yapt/releases
 
+
 .. raw:: html
 
-    <br>
     <img src="https://raw.githubusercontent.com/caian-org/yapt/master/.docs/logo.svg" height="240px" align="right"/>
-    <br>
-
 
 An opinionated template for Python projects that includes:
 
