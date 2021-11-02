@@ -7,10 +7,7 @@ class Calculator:
     '''Calculator with basic operations.
 
     Usage example:
-
-        calc = Calculator(1)
-        result = calc.plus(2).times(4).divided(2)
-        print(result)  # 6
+        res = Calculator(1).plus(2).times(4).divided(2).equals()
     '''
 
     def __init__(self, operand: Number) -> None:
