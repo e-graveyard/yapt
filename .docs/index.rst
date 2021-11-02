@@ -34,6 +34,10 @@ An opinionated template for Python projects that includes:
    -  Test execution and coverage report upload
    -  Docker image push to DockerHub
 
+The API documentation live preview is available at `yapt.upsetbit.co`_.
+
+.. _yapt.upsetbit.co: https://yapt.upsetbit.co
+
 
 Compatibility
 -------------
