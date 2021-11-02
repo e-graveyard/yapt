@@ -1,5 +1,6 @@
 |Tests| |Code Coverage| |Code Quality| |GitHub tag|
 
+===========================
 Yet Another Python Template
 ===========================
 
@@ -22,19 +23,19 @@ box:
    -  Docker image push to DockerHub
 
 Compatibility
--------------
+=============
 
 ``yapt`` is tested against all major python versions: ``3.6``, ``3.7``,
 ``3.8``, ``3.9`` and ``3.10``.
 
 How can I use it?
------------------
+=================
 
 Take what suits you, ignore or change what you do not like, and apply according
 to his will.
 
 License
--------
+=======
 
 To the extent possible under law, `Caian Rais Ertl`_ has waived **all copyright
 and related or neighboring rights to this work**. In the spirit of *freedom of
