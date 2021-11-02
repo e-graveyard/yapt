@@ -6,21 +6,23 @@ name = "pypi"
 [packages]
 
 [dev-packages]
-black = "*"
-pylint = "*"
 argh = "*"
+black = "*"
+dataclasses = "*"
 jedi = "*"
 watchdog = "*"
 mypy = "*"
+pylint = "*"
 pytest = "*"
 pylint-fail-under = "*"
 pytest-cov = "*"
 pytest-xdist = "*"
+pytest-sugar = "*"
 twine = "*"
-dataclasses = "*"
 vrelease-bin = "*"
 sphinx = "*"
 sphinxcontrib-napoleon = "*"
+sphinx-book-theme = "*"
 
 [scripts]
 "start" = "python -m yapt"
