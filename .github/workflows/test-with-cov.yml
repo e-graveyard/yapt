@@ -34,7 +34,7 @@ jobs:
           python -m pip install --upgrade pipenv wheel setuptools
 
       - name: Install python dependencies
-        run: pipenv install --deploy --dev
+        run: pipenv install --system --deploy --dev
 
       - name: Run unit tests
         run: pipenv run tests
