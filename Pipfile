@@ -23,7 +23,7 @@ vrelease-bin = "*"
 sphinx = "*"
 sphinxcontrib-napoleon = "*"
 sphinx-book-theme = "*"
-typing-extensions = "*"
+typed-ast = "*"
 
 [scripts]
 "start" = "python -m yapt"
