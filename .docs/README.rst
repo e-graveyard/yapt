@@ -56,7 +56,7 @@ to his will.
 License
 -------
 
-To the extent possible under law, `Caian Rais Ertl`_ has waived **all copyright
+To the extent possible under law, `Caian Ertl`_ has waived **all copyright
 and related or neighboring rights to this work**. In the spirit of *freedom of
 information*, I encourage you to fork, modify, change, share, or do whatever
 you like with this project! |CV|_
@@ -67,6 +67,6 @@ you like with this project! |CV|_
 
 .. |CV| replace:: ``^C ^V``
 .. _CV: https://kopimi.com
-.. _Caian Rais Ertl: https://github.com/upsetbit
+.. _Caian Ertl: https://github.com/upsetbit
 
 
