@@ -1,22 +1,25 @@
-FROM python:3.8-alpine3.13 AS base
-MAINTAINER Caian R. Ertl <hi@caian.org>
+FROM python:3.8-slim-buster AS py-debian
+FROM python:3.8-alpine3.13 AS py-alpine
 
-RUN addgroup -S alan && adduser -S alan -G alan
-RUN mkdir -p /home/alan
-RUN chown alan:alan /home/alan
-USER alan
-WORKDIR /home/alan
+FROM py-alpine AS base
+RUN addgroup -S turing
+RUN adduser -S turing -G turing
+RUN mkdir -p /home/turing
+RUN chown turing:turing /home/turing
+
+FROM py-debian AS export
+WORKDIR /
+COPY pyproject.toml .
+COPY poetry.lock .
+RUN pip install poetry && \
+    poetry export -f requirements.txt --output requirements.txt
 
 FROM base AS dependencies
-USER root
-WORKDIR /
-RUN mkdir yapt
-RUN pip install pipenv
-COPY Pipfile .
-COPY Pipfile.lock .
-RUN PIP_NO_CACHE_DIR=1 pipenv install --deploy --system
+COPY --from=export requirements.txt .
+RUN pip install -r requirements.txt
 
 FROM dependencies AS run
-USER alan
+USER turing
+WORKDIR /home/turing
 COPY yapt yapt
 ENTRYPOINT ["python", "-m", "yapt"]
