@@ -33,9 +33,20 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install poetry
-        run: python -m pip install --upgrade poetry
+        uses: snok/install-poetry@v1.0.0
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: Cache venv
+        id: code-check-cache
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: code-check-python-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
       - name: Install dependencies
+        if: steps.code-check-cache.outputs.cache-hit != 'true'
         run: poetry install
 
       - name: Check code style
