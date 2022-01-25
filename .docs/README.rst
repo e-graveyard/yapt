@@ -43,7 +43,7 @@ Compatibility
 -------------
 
 ``yapt`` is tested against all major python versions: ``3.6``, ``3.7``,
-``3.8``, ``3.9`` and ``3.10``.
+``3.8`` and ``3.9``.
 
 
 How can I use it?
