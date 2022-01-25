@@ -30,9 +30,10 @@ An opinionated template for Python projects that includes:
 -  Good-looking API documentation with **Sphinx**
 -  CI/CD pipeline on **GitHub Actions** with:
 
-   -  Linting, typing and style checking
+   -  Python venv caching for faster pipelines
+   -  Linting, style and code duplication checking
    -  Test execution and coverage report upload
-   -  Docker image push to DockerHub
+   -  Docker image build and push to DockerHub
 
 The API documentation live preview is available at `yapt.upsetbit.co`_.
 
