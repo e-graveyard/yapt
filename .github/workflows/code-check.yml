@@ -2,26 +2,21 @@ name: perform-code-checkings
 
 on:
   push:
-    branches:
-      - '*'
-    tags:
-      - '*'
-    paths-ignore:
-      - '**.rst'
+    branches: '*'
+    tags: '*'
+    paths-ignore: '**.rst'
+
   pull_request:
-    branches:
-      - '*'
-    tags:
-      - '*'
-    paths-ignore:
-      - '**.rst'
+    branches: '*'
+    tags: '*'
+    paths-ignore: '**.rst'
 
 jobs:
   code-check:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.7', '3.8', '3.9', '3.10']
+        python-version: ['3.7', '3.8', '3.9']
 
     steps:
       - name: Checkout code

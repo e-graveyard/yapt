@@ -2,19 +2,14 @@ name: run-tests-and-upload-coverage
 
 on:
   push:
-    branches:
-      - '*'
-    tags:
-      - '*'
-    paths-ignore:
-      - '**.rst'
+    branches: '*'
+    tags: '*'
+    paths-ignore: '**.rst'
+
   pull_request:
-    branches:
-      - '*'
-    tags:
-      - '*'
-    paths-ignore:
-      - '**.rst'
+    branches: '*'
+    tags: '*'
+    paths-ignore: '**.rst'
 
 jobs:
   test-with-cov:
