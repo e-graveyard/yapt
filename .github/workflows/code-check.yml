@@ -53,6 +53,12 @@ jobs:
       - name: Check types
         run: poetry run poe check:types
 
+      - name: Check security issues
+        run: poetry run poe check:security
+
+      - name: Check for dead code
+        run: poetry run poe check:deadcode
+
       - name: Run unit tests
         run: poetry run poe tests
 
