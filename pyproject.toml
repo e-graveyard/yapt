@@ -46,6 +46,7 @@ watchdog               = "2.1.6"
 "start"          = "python -m yapt"
 "start:watch"    = "watchmedo auto-restart -p '*.py' -R python -- -m yapt"
 "build:docs"     = "sphinx-build .docs .docs/build"
+"check:deadcode" = "vulture yapt"
 "check:lint"     = "pylint --fail-under 9 --rcfile .pylintrc --output-format colorized --verbose yapt"
 "check:security" = "bandit --exclude yapt/tests -r yapt"
 "check:style"    = "black -l 100 -S --check yapt"
@@ -53,6 +54,9 @@ watchdog               = "2.1.6"
 "fix:imports"    = "isort --sl yapt/**/*.py"
 "fix:style"      = "black -l 100 -S yapt"
 "tests"          = "pytest --cov yapt --cov-report term --cov-report html --cov-report xml --verbose"
+
+[tool.vulture]
+exclude = ["yapt/tests"]
 
 [build-system]
 requires      = ["poetry-core>=1.0.0"]
