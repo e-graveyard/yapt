@@ -17,5 +17,14 @@ def multiplication_table(operand: Number) -> None:
         print(f'{idx} x {operand} = {result}')
 
 
+def itself(value: Number) -> Number:
+    return Calculator(value).plus(value).minus(value).times(value).divided(value).equals()
+
+
 if __name__ == '__main__':
-    multiplication_table(7)
+    my_value = 7
+
+    multiplication_table(my_value)
+
+    if itself(my_value) != my_value:
+        raise RuntimeError('something went wrong here!!')
