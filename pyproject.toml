@@ -49,10 +49,10 @@ watchdog               = "2.1.7"
 "check:deadcode" = "vulture yapt"
 "check:lint"     = "pylint --fail-under 9 --rcfile .pylintrc --output-format colorized --verbose yapt"
 "check:security" = "bandit --exclude yapt/tests -r yapt"
-"check:style"    = "black -l 100 -S --check yapt"
+"check:style"    = "black -l 120 -S --check yapt"
 "check:types"    = "mypy yapt"
 "fix:imports"    = "isort --sl yapt/**/*.py"
-"fix:style"      = "black -l 100 -S yapt"
+"fix:style"      = "black -l 120 -S yapt"
 "tests"          = "pytest --cov yapt --cov-report term --cov-report html --cov-report xml --verbose"
 
 [tool.vulture]
