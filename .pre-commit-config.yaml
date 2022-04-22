@@ -1,0 +1,49 @@
+.before-commit: &before-commit
+  language: system
+  stages: [commit, merge-commit]
+
+.before-push: &before-push
+  language: system
+  stages: [push]
+
+fail_fast: true
+
+repos:
+  - repo: local
+    hooks:
+      - id: normalize-code-style
+        name: Normalize code-style
+        entry: make poe task=fix:style
+        <<: *before-commit
+
+      - id: sort-import-statements
+        name: Sort import statements
+        entry: make poe task=fix:imports
+        <<: *before-commit
+
+  - repo: local
+    hooks:
+      - id: style-rules-check
+        name: Style rules check
+        entry: make poe task=check:style
+        <<: *before-push
+
+      - id: dead-code-check
+        name: Dead (unused) code check
+        entry: make poe task=check:deadcode
+        <<: *before-push
+
+      - id: security-issues-check
+        name: Security issues check
+        entry: make poe task=check:security
+        <<: *before-push
+
+      - id: typing-issues-check
+        name: Typing issues check
+        entry: make poe task=check:types
+        <<: *before-push
+
+      - id: lint-rules-check
+        name: Lint rules check
+        entry: make poe task=check:lint
+        <<: *before-push
