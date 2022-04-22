@@ -1,6 +1,8 @@
-.DEFAULT_GOAL := docs
+.DEFAULT_GOAL := start
 
 HERE = $(shell pwd)
+
+APP_DIR = app
 TMP_CONTAINER_NAME = yapt-tmp-container
 
 
@@ -9,10 +11,14 @@ TMP_CONTAINER_NAME = yapt-tmp-container
 
 # Installs the project dependencies and git hooks (pre-commit and pre-push)
 init:
-	@cd app \
+	@cd $(APP_DIR) \
 		&& poetry install \
 		&& poetry run pre-commit install \
 		&& poetry run pre-commit install --hook-type pre-push
+
+# Starts the worker from inside the container in dev environment
+start:
+	@ENV="dev" docker-compose up --build --exit-code-from yapt
 
 
 # --------------
@@ -20,12 +26,18 @@ init:
 
 # Runs a poetry command from the root directory; example usage: make poe task=fix:style
 poe:
-	@cd app && poetry run poe $(task)
+	@cd $(APP_DIR) && poetry run poe $(task)
 
 clean-app:
-	@find app -type d -name "__pycache__" -exec rm -rf {} +
-	@cd app \
-		&& rm -rf htmlcov htmldocs .pytest_cache .mypy_cache .coverage
+	@find $(APP_DIR) -type d -name "__pycache__" -exec rm -rf {} +
+	@cd $(APP_DIR) \
+		&& rm -rf htmlcov .pytest_cache .mypy_cache .coverage
+
+# Destroys all containers created by docker-compose, delete the container volumes and all
+# temporary/cache files and directories -- starts everything over again
+clean: clean-app
+	@docker-compose down \
+		&& rm -rf .docs/htmldocs
 
 
 # ------------------------------------
@@ -35,15 +47,15 @@ DOCS_CONTAINER_BASE_DIR = /home/turing/.docs
 DOCS_IMAGE_NAME = yapt-docs
 
 build-docs-image:
-	docker build -t "$(DOCS_IMAGE_NAME)" -f .docs/Dockerfile .
+	@docker build -t "$(DOCS_IMAGE_NAME)" -f .docs/Dockerfile .
 
 # "DOCS_IMAGE_NAME" can be used as a CLI parameter; example usage: make build-docs-image DOCS_IMAGE_NAME="custom_name"
 docs: build-docs-image
 docs:
-	rm -rf ./app/htmldocs
-	docker run --name "$(TMP_CONTAINER_NAME)" "$(DOCS_IMAGE_NAME)" build
-	docker cp "$(TMP_CONTAINER_NAME):$(DOCS_CONTAINER_BASE_DIR)/htmldocs" ./.docs/htmldocs
-	docker rm "$(TMP_CONTAINER_NAME)"
+	@rm -rf ./$(APP_DIR)/htmldocs
+	@docker run --name "$(TMP_CONTAINER_NAME)" "$(DOCS_IMAGE_NAME)" build
+	@docker cp "$(TMP_CONTAINER_NAME):$(DOCS_CONTAINER_BASE_DIR)/htmldocs" ./.docs/htmldocs
+	@docker rm "$(TMP_CONTAINER_NAME)"
 
 serve-docs: build-docs-image
 serve-docs:
