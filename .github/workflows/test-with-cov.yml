@@ -46,7 +46,7 @@ jobs:
         run: docker run --name "$TEST_CONTAINER_NAME" "$IMAGE_NAME" poetry run poe test
 
       - name: Retrieve coverage file from container
-        run: docker cp "${TEST_CONTAINER_NAME}:/home/turing/yapt/app/coverage.xml" .
+        run: docker cp "${TEST_CONTAINER_NAME}:/home/turing/yapt/coverage.xml" .
 
       - name: Upload coverage results
         uses: codecov/codecov-action@v3
