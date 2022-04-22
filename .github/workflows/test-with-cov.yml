@@ -12,7 +12,54 @@ on:
     paths-ignore: '**.md'
 
 jobs:
-  test-with-cov:
+  docker-test-with-cov:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: yapt:latest
+      TEST_CONTAINER_NAME: yapt-docs
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Cache Docker layers
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: test-with-cov-buildx-${{ github.sha }}
+          restore-keys: |
+            test-with-cov-buildx-
+
+      - name: Build image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: false
+          load: true
+          tags: ${{ env.IMAGE_NAME }}
+          builder: ${{ steps.buildx.outputs.name }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          build-args: |
+            ENV=dev
+
+      - name: Run tests
+        run: docker run --name "$TEST_CONTAINER_NAME" "$IMAGE_NAME" poetry run poe test
+
+      - name: Retrieve coverage file from container
+        run: docker cp "${TEST_CONTAINER_NAME}:/home/turing/app/coverage.xml" .
+
+      - name: Upload coverage results
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.xml
+          verbose: true
+
+  host-test-with-cov:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,8 +83,8 @@ jobs:
         id: test-with-cov-cache
         uses: actions/cache@v3
         with:
-          path: app/.venv
-          key: test-with-cov-${{ hashFiles('app/poetry.lock') }}
+          path: ./app/.venv
+          key: test-with-cov-${{ hashFiles('./app/poetry.lock') }}
 
       - name: Install dependencies
         if: steps.test-with-cov-cache.outputs.cache-hit != 'true'
@@ -46,8 +93,8 @@ jobs:
       - name: Run unit tests
         run: make poe task=test
 
-#     - name: Upload coverage results
-#       uses: codecov/codecov-action@v3
-#       with:
-#         files: ./coverage.xml
-#         verbose: true
+      - name: Upload coverage results
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./app/coverage.xml
+          verbose: true
