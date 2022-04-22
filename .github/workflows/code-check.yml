@@ -29,9 +29,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
-          key: buildx-local-${{ github.sha }}
+          key: code-check-buildx-${{ github.sha }}
           restore-keys: |
-            buildx-local-
+            code-check-buildx-
 
       - name: Build image
         uses: docker/build-push-action@v2
@@ -65,16 +65,16 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.7', '3.8', '3.9', '3.10']
+        py-ver: ['3.7', '3.8', '3.9', '3.10']
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup python ${{ matrix.python-version }}
+      - name: Setup python ${{ matrix.py-ver }}
         uses: actions/setup-python@v3
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: ${{ matrix.py-ver }}
 
       - name: Install poetry
         uses: snok/install-poetry@v1.3.1
@@ -88,8 +88,8 @@ jobs:
         id: code-check-cache
         uses: actions/cache@v3
         with:
-          path: app/.venv
-          key: code-check-python-${{ matrix.python-version }}-${{ hashFiles('app/poetry.lock') }}
+          path: ./app/.venv
+          key: code-check-python-${{ matrix.py-ver }}-${{ hashFiles('./app/poetry.lock') }}
 
       - name: Install dependencies
         if: steps.code-check-cache.outputs.cache-hit != 'true'
