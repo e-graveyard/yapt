@@ -3,7 +3,7 @@ site_author: Caian Ertl
 dev_addr: 0.0.0.0:8000
 
 # git project
-repo_name: yapt
+repo_name: caian-org/yapt
 repo_url: https://github.com/caian-org/yapt
 edit_uri: edit/master/.docs
 
@@ -55,12 +55,9 @@ nav:
   - Home: index.md
 
   - Introduction:
-    - Rationale:         introduction/rationale.md
-    - What is a worker?: introduction/what-is-a-worker.md
-    - Architecture:      introduction/architecture.md
+    - About this project: introduction/about.md
 
-  - Getting Started:
-    - Quick Start:          getting-started/quick-start.md
-    - Running Locally:      getting-started/running-locally.md
-    - Running tests:        getting-started/running-tests.md
-    - Understanding Docker: getting-started/understanding-docker.md
+  - Getting started:
+    - Quick start:     getting-started/quick-start.md
+    - Running locally: getting-started/running-locally.md
+    - Running tests:   getting-started/running-tests.md
