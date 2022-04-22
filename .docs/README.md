@@ -27,7 +27,7 @@ The API documentation live preview is available at [yapt.upsetbit.co](yapt-docs)
 
 ## Compatibility
 
-`yapt` is tested against all major python versions: `3.7`, `3.8` and `3.9`.
+`yapt` is tested against python versions `3.7`, `3.8`, `3.9` and `3.10`.
 
 
 ## How can I use it?
