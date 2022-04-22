@@ -1,11 +1,6 @@
 name: run-tests-and-upload-coverage
 
 on:
-  push:
-    branches: '*'
-    tags: '*'
-    paths-ignore: '**.md'
-
   pull_request:
     branches: '*'
     tags: '*'
@@ -16,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: yapt:latest
-      TEST_CONTAINER_NAME: yapt-docs
+      TEST_CONTAINER_NAME: yapt-test
 
     steps:
       - name: Checkout code
@@ -51,7 +46,7 @@ jobs:
         run: docker run --name "$TEST_CONTAINER_NAME" "$IMAGE_NAME" poetry run poe test
 
       - name: Retrieve coverage file from container
-        run: docker cp "${TEST_CONTAINER_NAME}:/home/turing/app/coverage.xml" .
+        run: docker cp "${TEST_CONTAINER_NAME}:/home/turing/yapt/app/coverage.xml" .
 
       - name: Upload coverage results
         uses: codecov/codecov-action@v3
