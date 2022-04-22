@@ -5,29 +5,25 @@
 [![Docker Image Size][docker-img-size-shield]][docker-url]
 [![GitHub tag][tag-shield]][tag-url]
 
-# Yet Another Python Template
+# Yet Another Python (project) Template
 
 <img src=".docs/logo.svg" height="260px" align="right"/>
 
-An opinionated template for Python projects that includes:
+An opinionated template for Python projects that includes, out of the box:
 
-- Unit testing with **pytest**
-- Type checking with **MyPy**
-- Code coverage on **Codecov**
-- **Docker** image
-- Good-looking API documentation with **MkDocs**
-- CI/CD pipeline on **GitHub Actions** with:
+- Type safety with __MyPy__
+- Unit testing with __pytest__
+- Code coverage on __Codecov__
+- Container-ready with __Docker__
+- Good-looking documentation with __MkDocs__
+- CI/CD on __GitHub Actions__ with:
     - Python venv caching for faster pipelines
-    - Linting, style and code duplication checking
+    - Linting, style, security and other code quality checks
     - Test execution and coverage report upload
     - Docker image build and push to DockerHub
 
-The API documentation live preview is available at [yapt.upsetbit.co](yapt-docs).
-
-
-## Compatibility
-
-`yapt` is tested against python versions `3.7`, `3.8`, `3.9` and `3.10`.
+The documentation live preview is available at [yapt.upsetbit.co](yapt-docs).
+Check it out for more information about `yapt`.
 
 
 ## How can I use it?
