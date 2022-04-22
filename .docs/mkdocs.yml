@@ -1,0 +1,66 @@
+site_name: YAPT
+site_author: Caian Ertl
+dev_addr: 0.0.0.0:8000
+
+# git project
+repo_name: yapt
+repo_url: https://github.com/caian-org/yapt
+edit_uri: edit/master/.docs
+
+# destination dir of generated docs
+site_dir: htmldocs
+
+# documentation origin dir
+docs_dir: content
+
+copyright: Copyright &copy; Caian Ertl
+
+plugins:
+  - search
+  - git-revision-date
+  - mermaid2:
+      arguments:
+          theme: dark
+
+markdown_extensions:
+  - footnotes
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/caian-org/yapt
+    - icon: octicons/globe-16
+      link: https://caian.org
+
+theme:
+  name: material
+  custom_dir: content/overrides
+
+# logo: assets/logo-white.png
+
+  icon:
+    repo: fontawesome/brands/git-alt
+
+  features:
+    - header.autohide
+    - navigation.tabs
+    - navigation.expand
+
+  palette:
+    - scheme: slate
+      primary: light blue
+      accent: yellow
+
+nav:
+  - Home: index.md
+
+  - Introduction:
+    - Rationale:         introduction/rationale.md
+    - What is a worker?: introduction/what-is-a-worker.md
+    - Architecture:      introduction/architecture.md
+
+  - Getting Started:
+    - Quick Start:          getting-started/quick-start.md
+    - Running Locally:      getting-started/running-locally.md
+    - Running tests:        getting-started/running-tests.md
+    - Understanding Docker: getting-started/understanding-docker.md
