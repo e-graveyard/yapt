@@ -15,6 +15,7 @@ mkdocs-material                 = "8.2.9"
 mkdocs-mermaid2-plugin          = "0.5.2"
 mkdocs-minify-plugin            = "0.5.0"
 mkdocstrings                    = "0.18.1"
+mkdocstrings-python             = "0.6.6"
 
 [tool.poetry.dev-dependencies]
 poethepoet = "0.13.1"
