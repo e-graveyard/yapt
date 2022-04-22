@@ -1,6 +1,6 @@
 [tool.poetry]
 name        = "yapt"
-version     = "1.2.0"
+version     = "2.0.0"
 description = "yet another python (project) template"
 authors     = ["Caian Ertl <hi@caian.org>"]
 license     = "CC0-1.0"
@@ -12,16 +12,13 @@ classifiers = [
 
     "Environment :: Console",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 
 [tool.poetry.dev-dependencies]
 bandit       = "1.7.4"
@@ -43,18 +40,15 @@ watchdog     = "2.1.7"
 [tool.poe.tasks]
 "start"          = "python -m yapt"
 "start:watch"    = "watchmedo auto-restart -p '*.py' -R python -- -m yapt"
-"build:docs"     = "sphinx-build .docs .docs/build"
+"check:all"      = "sh .scripts/check-all.sh"
 "check:deadcode" = "vulture yapt"
 "check:lint"     = "pylint --fail-under 9 --rcfile .pylintrc --output-format colorized --verbose yapt"
-"check:security" = "bandit --exclude yapt/tests -r yapt"
+"check:security" = "bandit --exclude yapt/test -r yapt"
 "check:style"    = "black -l 120 -S --check yapt"
 "check:types"    = "mypy yapt"
 "fix:imports"    = "isort --sl yapt/**/*.py"
 "fix:style"      = "black -l 120 -S yapt"
-"tests"          = "pytest --cov yapt --cov-report term --cov-report html --cov-report xml --verbose"
-
-[tool.vulture]
-exclude = ["yapt/tests"]
+"test"           = "pytest --cov-config .coveragerc --cov yapt --cov-report term --cov-report html --cov-report xml --verbose"
 
 [build-system]
 requires      = ["poetry-core>=1.0.0"]
