@@ -4,12 +4,12 @@ on:
   push:
     branches: '*'
     tags: '*'
-    paths-ignore: '**.rst'
+    paths-ignore: '**.md'
 
   pull_request:
     branches: '*'
     tags: '*'
-    paths-ignore: '**.rst'
+    paths-ignore: '**.md'
 
 jobs:
   code-check:
@@ -37,30 +37,24 @@ jobs:
         id: code-check-cache
         uses: actions/cache@v3
         with:
-          path: .venv
-          key: code-check-python-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          path: app/.venv
+          key: code-check-python-${{ matrix.python-version }}-${{ hashFiles('app/poetry.lock') }}
 
       - name: Install dependencies
         if: steps.code-check-cache.outputs.cache-hit != 'true'
-        run: poetry install
+        run: cd app && poetry install
 
       - name: Check code style
-        run: poetry run poe check:style
+        run: make poe task=check:style
 
       - name: Check lint
-        run: poetry run poe check:lint
+        run: make poe task=check:lint
 
       - name: Check types
-        run: poetry run poe check:types
+        run: make poe task=check:types
 
       - name: Check security issues
-        run: poetry run poe check:security
+        run: make poe task=check:security
 
       - name: Check for dead code
-        run: poetry run poe check:deadcode
-
-      - name: Run unit tests
-        run: poetry run poe tests
-
-      - name: Build documentation
-        run: poetry run poe build:docs
+        run: make poe task=check:deadcode

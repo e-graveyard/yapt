@@ -4,12 +4,12 @@ on:
   push:
     branches: '*'
     tags: '*'
-    paths-ignore: '**.rst'
+    paths-ignore: '**.md'
 
   pull_request:
     branches: '*'
     tags: '*'
-    paths-ignore: '**.rst'
+    paths-ignore: '**.md'
 
 jobs:
   test-with-cov:
@@ -22,7 +22,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v3
         with:
-          python-version: 3.8
+          python-version: 3.9
 
       - name: Install poetry
         uses: snok/install-poetry@v1.3.1
@@ -35,17 +35,17 @@ jobs:
         uses: actions/cache@v3
         with:
           path: .venv
-          key: test-with-cov-${{ hashFiles('**/poetry.lock') }}
+          key: test-with-cov-${{ hashFiles('app/poetry.lock') }}
 
       - name: Install dependencies
         if: steps.test-with-cov-cache.outputs.cache-hit != 'true'
-        run: poetry install
+        run: cd app && poetry install
 
       - name: Run unit tests
-        run: poetry run poe tests
+        run: make poe task=test
 
-      - name: Upload coverage results
-        uses: codecov/codecov-action@v3
-        with:
-          files: ./coverage.xml
-          verbose: true
+#     - name: Upload coverage results
+#       uses: codecov/codecov-action@v3
+#       with:
+#         files: ./coverage.xml
+#         verbose: true
