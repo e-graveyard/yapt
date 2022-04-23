@@ -40,7 +40,8 @@ like with this project! [`^C ^V`][kopimi]
 [![License][cc-shield]][cc-url]
 
 
-<!-- badges refs -->
+<!-- markdown anchors -->
+[me]: https://github.com/upsetbit
 [yapt-docs]: https://yapt.upsetbit.co
 
 [gh-tc-shield]: https://img.shields.io/github/workflow/status/caian-org/yapt/run-tests-and-upload-coverage?label=tests&logo=github&style=flat-square
@@ -58,8 +59,6 @@ like with this project! [`^C ^V`][kopimi]
 [tag-shield]: https://img.shields.io/github/tag/caian-org/yapt.svg?logo=git&logoColor=FFF&style=flat-square
 [tag-url]: https://github.com/caian-org/yapt/releases
 
-<!-- license info refs -->
-[me]: https://github.com/upsetbit
 [cc-shield]: https://forthebadge.com/images/badges/cc-0.svg
 [cc-url]: http://creativecommons.org/publicdomain/zero/1.0
 
