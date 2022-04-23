@@ -43,7 +43,8 @@ clean: clean-app
 # ------------------------------------
 # Build & serve the documentation site
 
-DOCS_CONTAINER_BASE_DIR = /home/turing/.docs
+DOCS_CONTAINER_HOME = /home/turing
+DOCS_CONTAINER_BASE_DIR = $(DOCS_CONTAINER_HOME)/.docs
 DOCS_IMAGE_NAME = yapt-docs
 
 build-docs-cloudflare-pages:
@@ -68,6 +69,8 @@ serve-docs:
 	@docker run \
 		--rm \
 		--publish 8000:8000 \
+		--env PYTHONPATH="$(DOCS_CONTAINER_HOME)" \
+		--mount type=bind,source="$(HERE)/app/yapt",target="$(DOCS_CONTAINER_HOME)/yapt" \
 		--mount type=bind,source="$(HERE)/.docs/content",target="$(DOCS_CONTAINER_BASE_DIR)/content" \
 		--mount type=bind,source="$(HERE)/.docs/mkdocs.yml",target="$(DOCS_CONTAINER_BASE_DIR)/mkdocs.yml" \
 		--name "$(TMP_CONTAINER_NAME)" \
