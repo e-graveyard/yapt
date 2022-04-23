@@ -51,6 +51,7 @@ FROM build AS run
 
 WORKDIR ${HOME_DIR}
 COPY .git .git
+COPY app/yapt yapt
 
 WORKDIR ${PROJ_DIR}
 COPY .docs/mkdocs.yml .
