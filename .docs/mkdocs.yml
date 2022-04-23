@@ -1,4 +1,4 @@
-site_name: YAPT Documentation Pages
+site_name: YAPT Documentation
 site_author: Caian Ertl
 dev_addr: 0.0.0.0:8000
 repo_name: caian-org/yapt
@@ -45,7 +45,7 @@ theme:
   favicon: assets/white-logo.svg
 
   icon:
-    repo: fontawesome/brands/git-alt
+    repo: fontawesome/brands/github
 
   features:
     - header.autohide
