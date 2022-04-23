@@ -51,7 +51,7 @@ build-docs-cloudflare-pages:
 	@python3 -m pip install --upgrade poetry
 	@cd .docs \
 		&& poetry install \
-		&& poetry run poe docs:build
+		&& PYTHONPATH="$(HERE)/app" poetry run poe docs:build
 
 build-docs-image:
 	@docker build -t "$(DOCS_IMAGE_NAME)" -f .docs/Dockerfile .
