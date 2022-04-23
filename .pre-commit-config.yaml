@@ -1,8 +1,14 @@
+.only-on-yapt: &only-on-yapt
+  files: ^app/yapt/
+  types: [python]
+
 .before-commit: &before-commit
+  <<: *only-on-yapt
   language: system
   stages: [commit, merge-commit]
 
 .before-push: &before-push
+  <<: *only-on-yapt
   language: system
   stages: [push]
 
