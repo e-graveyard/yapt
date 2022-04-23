@@ -1,0 +1,18 @@
+{% import "partials/language.html" as lang with context %}
+
+<!-- taken from https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html -->
+
+<hr />
+
+<div class="md-source-file">
+  <small>
+    {% if git_page_authors and page.meta.git_revision_date_localized and page.meta.git_creation_date_localized %}
+      Authored by {{ git_page_authors }}.
+      {% if page.meta.git_creation_date_localized == page.meta.git_revision_date_localized %}
+        Created {{ page.meta.git_creation_date_localized }}.
+      {% else %}
+        Created {{ page.meta.git_creation_date_localized }} and last changed {{ page.meta.git_revision_date_localized }}.
+      {% endif %}
+    {% endif %}
+  </small>
+</div>
