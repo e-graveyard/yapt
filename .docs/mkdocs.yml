@@ -27,6 +27,14 @@ plugins:
       arguments:
           theme: dark
 
+  - mkdocstrings:
+      watch:
+        - ../yapt
+      handlers:
+          python:
+            options:
+              docstring_style: google
+
 markdown_extensions:
   - footnotes
 
@@ -68,3 +76,6 @@ nav:
     - Quick start:     getting-started/quick-start.md
     - Running locally: getting-started/running-locally.md
     - Running tests:   getting-started/running-tests.md
+
+  - API reference:
+    - Calculator: api-reference/calculator.md
