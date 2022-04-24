@@ -1,0 +1,34 @@
+{# vi: ft=htmldjango
+ #
+ # this is the jinja2 template file for the content section of each documentation page
+ #
+ # reference got from
+ #   <https://github.com/squidfunk/mkdocs-material/blob/8.2.9/src/partials/content.html>
+ #}
+
+
+{# edit button #}
+{% if page.edit_url %}
+  <a href="{{ page.edit_url }}" title="{{ lang.t('edit.link.title') }}" class="md-content__button md-icon">
+    {% include ".icons/material/pencil.svg" %}
+  </a>
+{% endif %}
+
+{# tags #}
+{% if "tags" in config.plugins %}
+  {% include "partials/tags.html" %}
+{% endif %}
+
+{#
+ # HACK: check whether the content contains a h1 headline; if it doesn't, the page title (or respectively site name)
+ # is used as the main headline.
+ #}
+{% if not "\x3ch1" in page.content %}
+  <h1>{{ page.title | d(config.site_name, true)}}</h1>
+{% endif %}
+
+{# markdown page content #}
+{{ page.content }}
+
+{# page metadata/source info (authors, creation and last changed dates) #}
+{% include "partials/source-file.html" %}

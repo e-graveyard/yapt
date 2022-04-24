@@ -1,18 +1,83 @@
-{% import "partials/language.html" as lang with context %}
+{# vi: ft=htmldjango
+ #
+ # this is the jinja2 template file for the content metadata section of each documentation page
+ #   i.e.: the individuals who wrote the page, the creation and last revision (change) dates
+ #
+ # reference got from
+ #   <https://github.com/squidfunk/mkdocs-material/blob/8.2.9/src/partials/source-file.html>
+ #}
 
-<!-- taken from https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html -->
 
-<hr />
+{#
+ # -----------------
+ # PLUGIN SAFEGUARDS
+ #
+ # the code below ensures that the metadata section will not break the documentation build in the case
+ # of a missing plugin, nor it will render a malformed string with undefined values
+ #}
 
-<div class="md-source-file">
-  <small>
-    {% if git_page_authors and page.meta.git_revision_date_localized and page.meta.git_creation_date_localized %}
-      Authored by {{ git_page_authors }}.
-      {% if page.meta.git_creation_date_localized == page.meta.git_revision_date_localized %}
-        Created {{ page.meta.git_creation_date_localized }}.
-      {% else %}
-        Created {{ page.meta.git_creation_date_localized }} and last changed {{ page.meta.git_revision_date_localized }}.
-      {% endif %}
-    {% endif %}
-  </small>
-</div>
+{# for "mkdocs-git-authors-plugin" #}
+{% if git_info and git_info.get('page_authors') %}
+  {% set page_author = git_page_authors %}
+{% else %}
+  {% set page_author = false %}
+{% endif %}
+
+{# for "mkdocs-git-revision-date-localized-plugin" #}
+{% if page.meta.git_revision_date_localized is defined and page.meta.git_revision_date_localized|length %}
+  {% set page_changed = page.meta.git_revision_date_localized %}
+{% else%}
+  {% set page_changed = false %}
+{% endif %}
+
+{# for "mkdocs-git-revision-date-localized-plugin", when option "enable_creation_date" is false #}
+{% if page.meta.git_creation_date_localized is defined and page.meta.git_creation_date_localized|length %}
+  {% set page_created = page.meta.git_creation_date_localized %}
+{% else%}
+  {% set page_created = false %}
+{% endif %}
+
+
+{#
+ # ---------------
+ # RENDERING LOGIC
+ #}
+
+{% set page_meta = "" %}
+
+{# when there is a page author (markdown file has been committed), show it #}
+{% if page_author %}
+  {% set page_meta = "Authored by " + page_author + ". " %}
+{% endif %}
+
+{# when the page creation datetime is available, show it #}
+{% if page_created %}
+  {% set page_meta = page_meta + "Created " + page_created %}
+
+  {# when both "creation" and "last changed" are available, show them in a single phrase #}
+  {# but only when they're different -- avoid cases like "Created 1 minute ago and last changed 1 minute ago" #}
+  {% if page_changed and page_created != page_changed %}
+    {% set page_meta = page_meta + " and last changed " + page_changed %}
+  {% endif %}
+{% else %}
+  {% if page_changed %}
+    {% set page_meta = page_meta + "Last changed " + page_changed %}
+  {% endif %}
+{% endif %}
+
+{# remove whitespace at the beginning & end of the phrase and ensures that it ends with a period #}
+{% set page_meta = page_meta.strip() %}
+{% if page_meta and not page_meta.endswith('.') %}
+  {% set page_meta = page_meta + "." %}
+{% endif %}
+
+{# when there's something to show, show it; otherwise just add some space -- break the line #}
+{% if page_meta %}
+  <hr />
+
+  <div class="md-source-file">
+    <small>{{ page_meta }}</small>
+  </div>
+{% else %}
+  <br />
+{% endif %}
