@@ -1,69 +1,110 @@
+from typing import TypeVar
 from typing import Union
 
 Number = Union[int, float]
+'''Base type accepted by the __Calculator__ operators.'''
+
+CalcSelf = TypeVar('CalcSelf', bound='Calculator')
+'''Calculator __self__ reference.'''
 
 
 class Calculator:
-    '''Calculator with basic operations.
+    '''Calculator with basic mathematical operations and chainable methods.
 
-    Usage example:
-        ```md
-        calc = Calculator(1) \ # start value is 1
-                 .plus(2)    \ # adds 2 to current value      ; value = 3
-                 .times(4)   \ # multiples current value by 4 ; value = 12
-                 .divided(2)   # divides current value by 2   ; value = 6
+    Example:
+        ```python
+        >>> res = Calculator(1) \  # start value    ; value = 1
+                    .plus(2)    \  # adds 2         ; value = 3
+                    .times(4)   \  # multiples by 4 ; value = 12
+                    .divided(2) \  # divides by 2   ; value = 6
+                    .equals()
 
-        res = calc.equals() # returns current value
+        >>> print(res)
+        6
         ```
+
+    Warning:
+        Due to the fact that Python relies on whitespace to define indentation,
+        the methods needs to be chained either:
+
+        1. On the same line
+           ```python
+           Calculator(999).plus(1).plus(2).plus(3)
+           ```
+
+        1. By using a backslack to indicate a "continuation" (like in the example above)
+           ```python
+           Calculator(999) \\
+             .plus(1) \\
+             .plus(2) \\
+             .plus(3)
+           ```
+
+        1. By scoping the code block inside parentheses
+           ```python
+           (
+             Calculator(999)
+               .plus(1)
+               .plus(2)
+               .plus(3)
+           )
+           ```
     '''
 
     def __init__(self, operand: Number) -> None:
-        self.result: Number = operand
+        '''
+        Args:
+            operand: The initial value set on the result attribute
+                (the _accumulator_).
+        '''
 
-    def plus(self, value: Number):
+        self.result: Number = operand
+        '''The final result _accumulator_. Each operation is performed against this value.'''
+
+    def plus(self: CalcSelf, value: Number) -> CalcSelf:
         '''Adds a value to the current result.
 
         Args:
-            value (Number): The number value to be added
+            value: The number value to be added.
 
         Returns:
-            self: The class itself object
+            Reference to the class itself instance.
         '''
         self.result += value
         return self
 
-    def minus(self, value: Number):
+    def minus(self: CalcSelf, value: Number) -> CalcSelf:
         '''Subtracts a value to the current result.
 
         Args:
-            value (Number): The number value to be subtracted
+            value: The number value to be subtracted.
 
         Returns:
-            self: The class itself object
+            Reference to the class itself instance.
         '''
         self.result -= value
         return self
 
-    def divided(self, value: Number):
+    def divided(self: CalcSelf, value: Number) -> CalcSelf:
         '''Divides a value to the current result.
 
         Args:
-            value (Number): The number to divide the result
+            value: The number to divide the result.
 
         Returns:
-            self: The class itself object
+            Reference to the class itself instance.
         '''
         self.result /= value
         return self
 
-    def times(self, value: Number):
+    def times(self: CalcSelf, value: Number) -> CalcSelf:
         '''Multiplies a value to the current result.
 
         Args:
-            value (Number): The number to multiply the result
+            value: The number to multiply the result.
 
         Returns:
-            self: The class itself object
+            Reference to the class itself instance.
         '''
         self.result *= value
         return self
@@ -72,6 +113,6 @@ class Calculator:
         '''Finishes the calculation and returns the final result.
 
         Returns:
-            Number: The calculation result
+            The calculation result.
         '''
         return self.result
