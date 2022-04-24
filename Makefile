@@ -7,24 +7,24 @@ TMP_CONTAINER_NAME = yapt-tmp-container
 
 
 # ----------
-# Quickstart
+# QUICKSTART
 
-# Installs the project dependencies and git hooks (pre-commit and pre-push)
+# installs the project dependencies and git hooks (pre-commit and pre-push)
 init:
 	@cd $(APP_DIR) \
 		&& poetry install \
 		&& poetry run pre-commit install \
 		&& poetry run pre-commit install --hook-type pre-push
 
-# Starts the worker from inside the container in dev environment
+# starts the worker from inside the container in dev environment
 start:
 	@ENV="dev" docker-compose up --build --exit-code-from yapt
 
 
 # --------------
-# Helper scripts
+# HELPER SCRIPTS
 
-# Runs a poetry command from the root directory; example usage: make poe task=fix:style
+# runs a poetry command from the root directory; example usage: make poe task=fix:style
 poe:
 	@cd $(APP_DIR) && poetry run poe $(task)
 
@@ -33,30 +33,33 @@ clean-app:
 	@cd $(APP_DIR) \
 		&& rm -rf htmlcov .pytest_cache .mypy_cache .coverage
 
-# Destroys all containers created by docker-compose, delete the container volumes and all
+# destroys all containers created by docker-compose, deletes the containers volumes and all
 # temporary/cache files and directories -- starts everything over again
 clean: clean-app
 	@docker-compose down \
 		&& rm -rf .docs/htmldocs
 
 
-# ------------------------------------
-# Build & serve the documentation site
+# -------------------
+# DOCUMENTATION BUILD
 
 DOCS_CONTAINER_HOME = /home/turing
 DOCS_CONTAINER_BASE_DIR = $(DOCS_CONTAINER_HOME)/.docs
 DOCS_IMAGE_NAME = yapt-docs
 
+# build target for cloudflare pages
 build-docs-cloudflare-pages:
 	@python3 -m pip install --upgrade poetry
 	@cd .docs \
 		&& poetry install \
 		&& PYTHONPATH="$(HERE)/app" poetry run poe docs:build
 
+# pre-step to build the documentation image using the project's root level as the context directory
 build-docs-image:
 	@docker build -t "$(DOCS_IMAGE_NAME)" -f .docs/Dockerfile .
 
-# "DOCS_IMAGE_NAME" can be used as a CLI parameter; example usage: make build-docs-image DOCS_IMAGE_NAME="custom_name"
+# builds the (docker) image, builds the project documentation and copy the html artifacts from the
+# container to the host (local machine)
 docs: build-docs-image
 docs:
 	@rm -rf ./$(APP_DIR)/htmldocs
@@ -64,6 +67,9 @@ docs:
 	@docker cp "$(TMP_CONTAINER_NAME):$(DOCS_CONTAINER_BASE_DIR)/htmldocs" ./.docs/htmldocs
 	@docker rm "$(TMP_CONTAINER_NAME)"
 
+# builds the (docker) image and serves the documentation (at localhost:8000) using volumes to bind the
+# host files to container, allowing for auto-rebuild when something changes
+# (either the mkdocs config, mkdocs content or example app python files)
 serve-docs: build-docs-image
 serve-docs:
 	@docker run \
