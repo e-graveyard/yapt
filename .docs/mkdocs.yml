@@ -1,0 +1,99 @@
+site_name: YAPT Documentation
+site_author: Caian Ertl
+dev_addr: 0.0.0.0:8000
+repo_name: caian-org/yapt
+repo_url: https://github.com/caian-org/yapt
+copyright: Copyright &copy; Caian Ertl
+
+# documentation origin dir
+docs_dir: content
+
+# destination dir of generated docs
+site_dir: htmldocs
+
+
+plugins:
+  - search
+  - progress
+  - git-authors
+
+  - git-revision-date-localized:
+      type: timeago
+      timezone: America/Sao_Paulo
+      locale: en
+      enable_creation_date: true
+
+  - mermaid2:
+      arguments:
+          theme: dark
+
+  - mkdocstrings:
+      watch:
+        - ../yapt
+      handlers:
+          python:
+            rendering:
+              heading_level: 1
+              show_root_heading: true
+              merge_init_into_class: true
+              members_order: source
+            selection:
+              docstring_style: google
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - footnotes
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/caian-org/yapt
+    - icon: octicons/globe-16
+      link: https://caian.org
+
+theme:
+  name: material
+  custom_dir: content/overrides
+
+  logo: assets/white-logo.svg
+  favicon: assets/white-logo.svg
+
+  icon:
+    repo: fontawesome/brands/github
+
+  features:
+    - header.autohide
+    - navigation.tabs
+    - navigation.expand
+    - navigation.tracking
+
+  palette:
+    - scheme: slate
+      primary: light blue
+      accent: yellow
+
+nav:
+  - Home: index.md
+
+  - Introduction:
+    - About this project: introduction/about.md
+
+  - Getting started:
+    - Quick start:     getting-started/quick-start.md
+    - Running locally: getting-started/running-locally.md
+    - Running tests:   getting-started/running-tests.md
+
+  - API reference:
+    - Packages:
+      - YAPT:
+        - Entrypoint:   api-reference/yapt/entrypoint.md
+        - Submodules:
+          - calculator: api-reference/yapt/calculator.md
