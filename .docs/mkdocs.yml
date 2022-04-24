@@ -32,11 +32,25 @@ plugins:
         - ../yapt
       handlers:
           python:
-            options:
+            rendering:
+              heading_level: 1
+              show_root_heading: true
+              merge_init_into_class: true
+              members_order: source
+            selection:
               docstring_style: google
 
 markdown_extensions:
+  - admonition
+  - attr_list
   - footnotes
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 extra:
   social:
@@ -78,4 +92,8 @@ nav:
     - Running tests:   getting-started/running-tests.md
 
   - API reference:
-    - Calculator: api-reference/calculator.md
+    - Packages:
+      - YAPT:
+        - Entrypoint:   api-reference/yapt/entrypoint.md
+        - Submodules:
+          - calculator: api-reference/yapt/calculator.md
