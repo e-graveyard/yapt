@@ -1,5 +1,5 @@
-FROM python:3.8-slim-buster AS py-debian
-FROM python:3.8-alpine3.13 AS py-alpine
+FROM python:3.10.7-slim-buster AS py-debian
+FROM python:3.10.0-alpine3.13 AS py-alpine
 
 FROM py-alpine AS base
 RUN addgroup -S turing
